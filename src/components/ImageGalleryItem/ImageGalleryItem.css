@@ -1,0 +1,26 @@
+ /* .photo-card {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: scale 250ms linear, box-shadow 250ms linear;
+  }
+  
+  .photo-card:hover {
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+  .photo-card:hover {
+    scale: 1.08;
+  }
+  
+  .img-wrap {
+    height: 260px;
+    overflow: hidden;
+  }
+  
+  .image {
+    width: 100%;
+    height: 100%;
+    transition: scale 300ms linear;
+  }  */
