@@ -65,6 +65,7 @@ export class App extends Component {
 
     this.setState({ loading: true });
     const res = await getImagesApi(value, page);
+    toast.success(`We found ${res.totalHits} images and photos`)
     console.log(res);
     this.setState({ loading: false });
 
@@ -140,7 +141,7 @@ export class App extends Component {
           <FiArrowUpCircle style={{ width: 50, height: 50, color: "#3f51b5" }} />           
         </ScrollToTop>  
         
-        <ToastContainer autoClose={2000} position="top-center" theme="light" />
+        <ToastContainer autoClose={2000} position="top-left" theme="dark" />
       </Container>
     )
   }
