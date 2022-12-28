@@ -1,6 +1,6 @@
 import { ImageGallery } from "components/ImageGallery/ImageGallery";
 import { Searchbar } from "components/Searchbar/Searchbar";
-// import React, { Component } from "react";
+import React, { Component } from "react";
 import { getImagesApi } from '../../services/ApiService'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,7 +9,6 @@ import Button from "components/Button/Button";
 import Container from './App.styled';
 import Modal from "components/Modal/Modal";
 import {FiArrowUpCircle} from "react-icons/fi"
-import React, { Component } from "react";
 import ScrollToTop from 'react-scroll-up';
 
 export class App extends Component {
