@@ -136,8 +136,10 @@ export class App extends Component {
           </Modal>
         )}
         
-        <ScrollToTop showUnder={160} topPosition={0}> {/* https://www.npmjs.com/package/react-scroll-up/v/1.4.0 */}      
-          <FiArrowUpCircle style={{ width: 50, height: 50, color: "#3f51b5" }} />           
+        <ScrollToTop showUnder={160}>
+       
+          <FiArrowUpCircle style={{ width: 50, height: 50, color: "#3f51b5" }} /> 
+          
         </ScrollToTop>  
         
         <ToastContainer autoClose={2000} position="top-center" theme="light" />
