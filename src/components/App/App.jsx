@@ -8,8 +8,8 @@ import Loader from "components/Loader/Loader";
 import Button from "components/Button/Button";
 import Container from './App.styled';
 import Modal from "components/Modal/Modal";
-
-
+import {FiArrowUpCircle} from "react-icons/fi"
+import ScrollToTop from 'react-scroll-up';
 
 export class App extends Component {
   state = {
@@ -130,12 +130,17 @@ export class App extends Component {
           checkGalleryImg && checkEndList && <Button onClick={this.loadMore} />
         )}
 
+        <ScrollToTop showUnder={220}>
+          <FiArrowUpCircle style={{ width: 40, height: 40, color: "darkblue"}} /> 
+        </ScrollToTop>
+
         {selectedImg && (
           <Modal onClose={this.closeModal}>
             <img src={selectedImg} alt={modalImgAlt} />
           </Modal>
         )}
-        <ToastContainer autoClose={2000} position="top-center" theme="light" />
+        
+        <ToastContainer autoClose={2000} position="top-center" theme="#3f51b5" />
       </Container>
     )
   }
