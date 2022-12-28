@@ -17,8 +17,8 @@ export function App() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [selectedImg] = useState(null);
-  const [modalImgAlt] = useState('');
+  const [selectedImg, setSelectedImg] = useState(null);
+  const [modalImgAlt, setModalImgAlt] = useState('');
 
 
   // async componentDidUpdate(_, prevState) {
@@ -85,7 +85,8 @@ export function App() {
   };  
 
   const loadMore = () => {
-    setPage(prevPage => prevPage + 1); 
+    setPage(prevPage => prevPage + 1);
+    console.log(page);
   };
 
   const scroll = () => {
@@ -97,14 +98,13 @@ export function App() {
   }; 
 
   const selectImg = (largeImageURL, altTag) => {
-    this.setState({ selectedImg: largeImageURL, modalImgAlt: altTag });    
+    setSelectedImg(largeImageURL);
+    setModalImgAlt(altTag);        
   };
 
   const closeModal = () => {
-    this.setState({
-      selectedImg: '',
-      modalImgAlt: '',
-    });
+    setSelectedImg('');
+    setModalImgAlt('');  
   };
 
   
