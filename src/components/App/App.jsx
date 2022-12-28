@@ -139,7 +139,7 @@ export class App extends Component {
         
         <ScrollToTop showUnder={160}>
        
-          <FiArrowUpCircle style={{ width: 40, height: 40, color: "#15588f"}} /> 
+          <FiArrowUpCircle style={{ width: 50, height: 50, color: "#3f51b5" }} /> 
           
         </ScrollToTop>  
         
