@@ -1,6 +1,6 @@
 import { ImageGallery } from "components/ImageGallery/ImageGallery";
 import { Searchbar } from "components/Searchbar/Searchbar";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { getImagesApi } from '../../services/ApiService'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -20,35 +20,38 @@ export function App() {
   const [selectedImg, setSelectedImg] = useState(null);
   const [modalImgAlt, setModalImgAlt] = useState('');
 
+  useEffect(() => {
+    const fetchApi = async () => {       
+  
+      if (page !== 1) {
+        setLoading(true);
+        const res = await getImagesApi(query, page);
+        console.log(res);
+  
+        setImages(images => [...images, ...res.hits]);
+        setLoading(false);
+        };
+  
+        if (page !== 1 ) {
+          scroll('bottom');
+        } else {
+          scroll('top');
+        }       
+    };
+    if (query && page) {
+      fetchApi();
+    }
+  }, [page, query]);  
 
-  // async componentDidUpdate(_, prevState) {
-  //   const { query, page, totalPages, images } = this.state;
+  const customId = "custom-id-yes"; //Prevent duplicate toast.warning
 
-  //   // console.log('prevState.page: ', prevState.page);
-  //   // console.log('this.state.page: ', this.state.page);
-
-  //   // console.log('prevState.query: ', prevState.query);
-  //   // console.log('this.state.query: ', this.state.query);         
-
-  //   if (prevState.page !== page && page !== 1) {
-  //     this.setState({ loading: true });
-  //     const res = await getImagesApi(query, page);
-  //     console.log(res);
-
-  //     this.setState(({ images }) => ({
-  //       images: [...images, ...res.hits],
-  //       loading: false,
-  //     }));
-
-  //     setTimeout(() => this.scroll(), 1);
-  //   }
-
-  //   if (page >= totalPages && images !== prevState.images && images.length !== 0 ) {
-  //     toast.warning(
-  //       "We're sorry, but you've reached the end of search results."
-  //     );
-  //   }
-  // }
+  useEffect(() => {
+  if (page >= totalPages  && images.length !== 0 ) {
+    toast.warning(
+      "We're sorry, but you've reached the end of search results.", {
+        toastId: customId
+      });
+  }}, [page, totalPages, images.length])
 
   const onSubmit = async evt => {
     evt.preventDefault();
@@ -106,12 +109,10 @@ export function App() {
     setSelectedImg('');
     setModalImgAlt('');  
   };
-
   
     // const { images, loading, totalPages, page, selectedImg, modalImgAlt } = this.state;
     const checkEndList = page < totalPages;
-    const checkGalleryImg = images.length !== 0;
-    
+    const checkGalleryImg = images.length !== 0;    
 
     return (      
       <Container>        
@@ -136,8 +137,7 @@ export function App() {
           <FiArrowUpCircle style={{ width: 50, height: 50, color: "#3f51b5" }} />           
         </ScrollToTop>  
         
-        <ToastContainer autoClose={2000} position="top-left" theme="dark" />
+        <ToastContainer autoClose={2000} position="top-right" theme="dark" />
       </Container>
-    )
-  
+    )  
 }

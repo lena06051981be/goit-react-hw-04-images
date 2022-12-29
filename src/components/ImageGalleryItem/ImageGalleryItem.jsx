@@ -21,23 +21,23 @@ export const ImageGalleryItem = ({ images, onSelect }) => {
           onClick={() => onSelect(image.largeImageURL, image.tags)}
           loading="lazy"
           />
-          <GalleryInfo class='info'>
-            <GalleryInfoItem class='info__item'>
+          <GalleryInfo className='info'>
+            <GalleryInfoItem className='info__item'>
               <b>Likes</b>
               <FcLike style={{ width: 14, height: 14 }} />              
               {image.likes}
             </GalleryInfoItem>
-            <GalleryInfoItem class='info__item'>
+            <GalleryInfoItem className='info__item'>
               <b>Views</b>
               <ImEye style={{ width: 14, height: 14, color: "lightgreen"}} />              
               {image.views}
             </GalleryInfoItem>
-            <GalleryInfoItem class='info__item'>
+            <GalleryInfoItem className='info__item'>
               <b>Comments</b>
               <FaComments style={{ width: 14, height: 14, color: "lightblue"}} />              
               {image.comments}
             </GalleryInfoItem>
-            <GalleryInfoItem class='info__item'>
+            <GalleryInfoItem className='info__item'>
               <b>Downloads</b>
               <MdOutlineFileDownload style={{ width: 14, height: 14, color: "yellow"}} />              
               {image.downloads}
