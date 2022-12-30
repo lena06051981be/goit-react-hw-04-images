@@ -26,17 +26,12 @@ export function App() {
     if (!query) {
       return;
     }
-    // if (query === '') {
-    //   toast.success('Please, enter another search value!');
-    //   setImages([]);
-    //   return;
-    // }
-
 
     const fetchApi = async () => {  
       
       if (page === 1) {
         let res = await getImagesApi(query, page);
+        toast.success(`We found ${res.totalHits} images and photos`)
         setImages(images => [...res.hits]);
         setTotalPages(Math.floor(res.totalHits / 12));
         if (res.hits.length === 0) {
