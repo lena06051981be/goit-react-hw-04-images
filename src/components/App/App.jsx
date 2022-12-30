@@ -19,7 +19,6 @@ export function App() {
   const [loading, setLoading] = useState(false);
   const [selectedImg, setSelectedImg] = useState(null);
   const [modalImgAlt, setModalImgAlt] = useState('');
-  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     if (!query) {
