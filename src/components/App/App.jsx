@@ -12,12 +12,10 @@ import {FiArrowUpCircle} from "react-icons/fi"
 import ScrollToTop from 'react-scroll-up';
 
 export function App() {
-  // const [searchValue, setSearchValue] = useState('');
   const [images, setImages] = useState([]);
   const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(null);
-  // const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [selectedImg, setSelectedImg] = useState(null);
   const [modalImgAlt, setModalImgAlt] = useState('');
@@ -32,6 +30,7 @@ export function App() {
       if (page === 1) {
         let res = await getImagesApi(query, page);
         toast.success(`We found ${res.totalHits} images and photos`)
+        
         setImages(images => [...res.hits]);
         setTotalPages(Math.floor(res.totalHits / 12));
         if (res.hits.length === 0) {
@@ -89,44 +88,7 @@ export function App() {
     setPage(1);
     setImages([]);
     setQuery(newSearchQuery);
-  };
-
-  // const onSubmit = async newSearchQuery  => {
-  //   // evt.preventDefault();
-  //   setSearchValue(newSearchQuery);
-  //   // const input = newSearchQuery.target.elements.search;
-  //   const value = searchValue
-  //   // const value = input.value.trim();
-  //   const page = 1;
-  //   // setPage(1)
-
-  //   if (value === '') {
-  //     // toast.success('Please, enter another search value!');
-  //     setImages([]);
-  //     return;
-  //   }
-
-  //   setLoading(true);
-  //   const res = await getImagesApi(value, page);
-  //   toast.success(`We found ${res.totalHits} images and photos`)
-  //   console.log(res);
-  //   setLoading(false);
-
-  //   if (res.hits.length === 0) {
-  //     toast.success(
-  //       'Sorry, there are no images matching your search query. Please try again.'
-  //     );
-  //     setImages([]);
-  //     return;
-  //   }
-
-  //   const totalPages = Math.floor(res.totalHits / 12);
-    
-  //     setImages(res.hits);
-  //     setQuery(newSearchQuery);
-  //     setPage(page);
-  //     setTotalPages(totalPages);    
-  // };  
+  };  
 
   const loadMore = () => {
     setPage(prevPage => prevPage + 1);
@@ -150,8 +112,7 @@ export function App() {
     setSelectedImg('');
     setModalImgAlt('');  
   };
-  
-    // const { images, loading, totalPages, page, selectedImg, modalImgAlt } = this.state;
+     
     const checkEndList = page < totalPages;
     const checkGalleryImg = images.length !== 0;    
 

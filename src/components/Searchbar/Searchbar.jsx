@@ -1,6 +1,5 @@
 import { FcSearch } from "react-icons/fc";
 import PropTypes from 'prop-types';
-// import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {
   SearchBarHeader,
@@ -21,14 +20,9 @@ export default function Searchbar ({ onFormSubmit  }) {
   const handleSubmit = event => {
     event.preventDefault();
 
-    // if (searchValue.trim() === '') {
-    //   toast.success('Please, enter another search value!');
-    //   setSearchValue('');
-    //   return;
-    // }
+    // here we can make any checks of input.value , if require ;)
 
     onFormSubmit(query.toLowerCase());
-    // setSearchValue('');
   };
 
   return (
