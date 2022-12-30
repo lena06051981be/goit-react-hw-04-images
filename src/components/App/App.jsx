@@ -26,17 +26,36 @@ export function App() {
     if (!query) {
       return;
     }
+    // if (query === '') {
+    //   toast.success('Please, enter another search value!');
+    //   setImages([]);
+    //   return;
+    // }
 
-    const fetchApi = async () => {       
+
+    const fetchApi = async () => {  
+      
+      if (page === 1) {
+        let res = await getImagesApi(query, page);
+        setImages(images => [...res.hits]);
+        setTotalPages(Math.floor(res.totalHits / 12));
+        if (res.hits.length === 0) {
+          toast.success(
+            'Sorry, there are no images matching your search query. Please try again.'
+          );
+          setImages([]);
+          return;
+        }
+      }      
   
-      if (page >= 1) {
+      if (page !== 1) {
         setLoading(true);
-        const res = await getImagesApi(query, page);
+        const res = await getImagesApi(query, page);        
         console.log(res);
   
         setImages(images => [...images, ...res.hits]);
         setLoading(false);
-        };
+        };        
   
         if (page !== 1 ) {
           scroll('bottom');
@@ -63,7 +82,8 @@ export function App() {
 
   const onSubmit = newSearchQuery => {
     if (!newSearchQuery.trim()) {
-      toast.error('Please enter search parameters.');
+      toast.success('Please, enter another search value!');
+      setImages([]);
       return;
     }
 
