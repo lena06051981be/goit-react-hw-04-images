@@ -19,6 +19,7 @@ export function App() {
   const [loading, setLoading] = useState(false);
   const [selectedImg, setSelectedImg] = useState(null);
   const [modalImgAlt, setModalImgAlt] = useState('');
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     if (!query) {
@@ -28,6 +29,7 @@ export function App() {
     const fetchApi = async () => {  
       
       if (page === 1) {
+        setLoading(true);
         let res = await getImagesApi(query, page);
         toast.success(`We found ${res.totalHits} images and photos`)
         
@@ -40,6 +42,7 @@ export function App() {
           setImages([]);
           return;
         }
+        setLoading(false);
       }      
   
       if (page !== 1) {
@@ -130,8 +133,8 @@ export function App() {
         )}
 
         {selectedImg && (
-          <Modal onClose={closeModal}>
-            <img src={selectedImg} alt={modalImgAlt} />
+          <Modal onClose={closeModal} selectedImg={selectedImg} modalImgAlt={modalImgAlt} >
+            
           </Modal>
         )}
         

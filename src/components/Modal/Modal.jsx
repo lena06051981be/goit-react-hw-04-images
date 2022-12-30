@@ -1,13 +1,16 @@
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
+import Loader from "components/Loader/Loader";
 
 import {createPortal} from 'react-dom'; //делаем запись в public <div id="modal-root"></div>
 
 import { Overlay, ModalWrap } from './Modal.styled';
+import { useState } from 'react';
 
 const modalRoot = document.querySelector('#modal-root')
 
-export default function Modal({onClose, children})  {
+export default function Modal({onClose, selectedImg, modalImgAlt })  {
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = e => {
@@ -31,8 +34,9 @@ export default function Modal({onClose, children})  {
   };
   
     return createPortal(
-      <Overlay onClick={handleBackdropClick}>
-        <ModalWrap>{children}</ModalWrap>
+      <Overlay onClick={handleBackdropClick}>     
+         {!isLoaded && <Loader absolute />}
+        <ModalWrap><img src={selectedImg} alt={modalImgAlt} onLoad={() => setIsLoaded(true)}/></ModalWrap>
       </Overlay>,
       modalRoot,
     )      
