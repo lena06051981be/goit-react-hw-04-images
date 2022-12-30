@@ -37,8 +37,9 @@ export function App() {
         if (res.hits.length === 0) {
           toast.success(
             'Sorry, there are no images matching your search query. Please try again.'
-          );
+          );          
           setImages([]);
+          setLoading(false);
           return;
         }
         setLoading(false);
